@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+
+<body>
+  <!--
+Необязательное задание.
+
+Необходимо реализовать функцию, которая будет принимать первым аргументом
+целое положительное число, в следующих трех аргументах функция принимает слова
+в разных склонениях.
+Функция должна возвращать одно из трех переданных в параметры слов подходящее
+под число, которое передано первым аргументом.
+
+Пример:
+console.log(declinationOfNumber(1, "яблоко", "яблока", "яблок")); // "яблоко"
+console.log(declinationOfNumber(2, "мяч", "мяча", "мячей")); // "мяча"
+console.log(declinationOfNumber(5, "стул", "стула", "стульев")); // "стульев"
+
+Функция должна работать с любым словом и любым целым положительным числом.
+Все аргументы, которые будут передаваться функции будут верны.
+-->
+  <script>
+    "use strict";
+
+    /**
+    * Выполняет операции над числами.
+    * @param {number} quantity Количество - целое положит. число.
+    * @param {string} one Склонение слова для количества 1, 21, 101...
+    * @param {string} two Склонение слова для количества 2, 3, 22...
+    * @param {string} many Склонение слова для количества 5, 6, 13...
+    * @return {string} Склонение слова, подходящее для заданного количества.
+    */
+    function declinationOfNumber(num, one, two, many) {
+      const divRest10 = num % 10;
+      const divRest100 = num % 100;
+      if (num < 0) {
+        return "Количество меньше нуля";
+      } else if (divRest10 === 1 && divRest100 !== 11) {
+        return one;
+      } else if (divRest10 >= 2 && divRest10 <= 4 &&
+        (divRest100 < 10 || divRest100 > 20)) {
+        return two;
+      } else {
+        return many;
+      }
+    }
+
+    const quantity = +prompt("Введите количество");
+    const wordOne = prompt("Введите слово, подходящее для одного предмета", "яблоко");
+    const wordTwo = prompt("Введите слово, подходящее для двух предметов", "яблока");
+    const wordMany = prompt("Введите слово, подходящее для нескольких предметов", "яблок");
+
+    console.log(declinationOfNumber(quantity, wordOne, wordTwo, wordMany));
+  </script>
+</body>
+
+</html>
